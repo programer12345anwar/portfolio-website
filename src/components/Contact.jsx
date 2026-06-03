@@ -36,14 +36,20 @@ function Contact() {
         throw new Error("All fields are required");
       }
 
-      // Use Formspree as fallback option
+      // Prepare form data to submit (Formspree or other endpoint)
       const formDataToSubmit = new FormData();
       formDataToSubmit.append("name", formData.name);
       formDataToSubmit.append("email", formData.email);
       formDataToSubmit.append("subject", formData.subject);
       formDataToSubmit.append("message", formData.message);
 
-      const response = await fetch("https://formspree.io/f/xyzyzryb", {
+      // Use configurable endpoint via Vite env var `VITE_FORMSPREE_ENDPOINT`.
+      // If not set, this falls back to the previous placeholder endpoint.
+      const FORMSPREE_ENDPOINT =
+        import.meta.env.VITE_FORMSPREE_ENDPOINT ||
+        "https://formspree.io/f/xyzyzryb";
+
+      const response = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
         body: formDataToSubmit,
         headers: {
@@ -51,8 +57,18 @@ function Contact() {
         },
       });
 
+      // Try to read response body for better diagnostics
+      let respBody = "";
+      try {
+        respBody = await response.text();
+      } catch (err) {
+        respBody = "<no response body>";
+      }
+
       if (!response.ok) {
-        throw new Error("Form submission failed");
+        throw new Error(
+          `Form submission failed: ${response.status} ${response.statusText} - ${respBody}`,
+        );
       }
 
       // Show success toast
