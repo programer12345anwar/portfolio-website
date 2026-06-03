@@ -52,7 +52,7 @@ ACHIEVEMENTS
     const element = document.createElement("a");
     const file = new Blob([resumeContent], { type: "text/plain" });
     element.href = URL.createObjectURL(file);
-    element.download = "Md_Anwar_Alam_Resume.txt";
+    element.download = "https://drive.google.com/file/d/1fa_MrLw0DajKSeza0e14KF9wnS5-2ZnF/view?usp=drivesdk";
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
