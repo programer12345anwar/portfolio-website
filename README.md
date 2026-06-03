@@ -161,13 +161,12 @@ portfolio_website/
 This project is open source and available under the MIT License.
 
 ## 👨‍💻 Author
-
-Your Name - [Your Website](https://yourwebsite.com)
+Md Anwar Alam
 
 ## 📞 Support
 
-For support, email support@example.com or open an issue in the repository.
+For support, email mdanwar40212@gmail.com or open an issue in the repository.
 
 ---
 
-Made with ❤️ by [Your Name]
+Made with by Md Anwar Alam
