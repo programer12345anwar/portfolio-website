@@ -4,58 +4,67 @@ import "./Hero.css";
 
 function Hero() {
   const handleDownloadResume = () => {
-    // Create a sample resume download
-    const resumeContent = `
-Md Anwar Alam
-+91 6200705989 | mdanwar40212@gmail.com
-Hyderabad, India
+    // Download resume from Google Drive using the file ID
+    // File ID extracted from: https://drive.google.com/file/d/1fa_MrLw0DajKSeza0e14KF9wnS5-2ZnF/view
+    const driveFileId = "1fa_MrLw0DajKSeza0e14KF9wnS5-2ZnF";
+    const driveDownloadUrl = `https://drive.google.com/uc?export=download&id=${driveFileId}`;
 
-PROFESSIONAL SUMMARY
-Full-Stack Java Developer with expertise in Spring Boot, Microservices, and Data Structures & Algorithms.
-Solved 600+ LeetCode and DSA problems. Currently working as Associate at Wipro Limited.
-
-SKILLS
-- Core Java: Collections, Multithreading, Stream API, Lambda Expressions
-- Spring Boot, Spring Security, Microservices Architecture
-- Databases: MySQL, PostgreSQL, MongoDB, Redis
-- Tools: Maven, Docker, Git, JUnit, Postman
-- Frontend: React, JavaScript, HTML5, CSS3
-
-WORK EXPERIENCE
-Associate - Content Analyst | Wipro Limited (2025 - Present)
-- Analyze and optimize content strategies
-- Implement backend solutions for content delivery
-
-EDUCATION
-B.Tech Computer Science
-Maulana Azad National Urdu University (MANUU)
-GPA: 8.28 | Year: 2025
-
-CERTIFICATIONS
-- Java Full Stack Development - AccioJob (2025)
-- TCS National Qualifier Test - TCS (2025)
-- HackerRank Java & Python (2024)
-- Full Stack Web Development - Udemy
-
-PROJECTS
-1. StreamSphere - Java, Spring Boot, Microservices
-2. Cloud Share - Java, Spring Boot, React, JWT
-3. Portfolio Website - React, Vite, CSS3
-
-ACHIEVEMENTS
-- 250+ LeetCode Problems Solved
-- 600+ DSA Problems Solved
-- 250+ GeeksforGeeks Problems
-- ONGC Merit-cum-Means Scholarship
-    `;
-
+    // Open the download link in a new tab/window to trigger the download
     const element = document.createElement("a");
-    const file = new Blob([resumeContent], { type: "text/plain" });
-    element.href = URL.createObjectURL(file);
-    element.download = "https://drive.google.com/file/d/1fa_MrLw0DajKSeza0e14KF9wnS5-2ZnF/view?usp=drivesdk";
+    element.href = driveDownloadUrl;
+    element.target = "_blank";
+    element.rel = "noopener noreferrer";
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
+  };
+
+  const handleEmailClick = (e) => {
+    e.preventDefault();
+    const email = "mdanwar40212@gmail.com";
+    const mailtoLink = `mailto:${email}`;
+
+    // Track whether the window lost focus after trying to open the mail client.
+    // If it doesn't lose focus, assume the mail client didn't open and fallback to Gmail.
+    let blurred = false;
+    const onBlur = () => {
+      blurred = true;
+    };
+    window.addEventListener("blur", onBlur);
+
+    // Open a blank window synchronously so we can reuse it for the Gmail fallback
+    // (this avoids popup blockers when opening from the timeout)
+    let fallbackWin = null;
+    try {
+      fallbackWin = window.open("", "_blank", "noopener,noreferrer");
+    } catch (err) {
+      fallbackWin = null;
+    }
+
+    // Try opening the user's default mail client
+    window.location.href = mailtoLink;
+
+    // Fallback to Gmail compose if default client didn't open (no blur)
+    setTimeout(() => {
+      window.removeEventListener("blur", onBlur);
+      if (!blurred) {
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}`;
+        try {
+          if (fallbackWin && !fallbackWin.closed) {
+            fallbackWin.location.href = gmailUrl;
+          } else {
+            window.open(gmailUrl, "_blank", "noopener,noreferrer");
+          }
+        } catch (err) {
+          window.open(gmailUrl, "_blank", "noopener,noreferrer");
+        }
+      } else {
+        // Close the placeholder tab if the mail client opened
+        if (fallbackWin && !fallbackWin.closed) {
+          try { fallbackWin.close(); } catch (err) { /* ignore */ }
+        }
+      }
+    }, 1000);
   };
 
   return (
@@ -107,6 +116,7 @@ ACHIEVEMENTS
                 href="mailto:mdanwar40212@gmail.com"
                 className="social-link"
                 title="Email"
+                onClick={handleEmailClick}
               >
                 <FaEnvelope />
               </a>
