@@ -10,12 +10,13 @@
     "lint": "eslint . --ext .js,.jsx"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
+    "@vercel/analytics": "^2.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
     "react-icons": "^4.11.0",
-    "react-scroll": "^1.8.10",
-    "@emailjs/browser": "^3.11.0",
-    "react-hot-toast": "^2.4.1"
+    "react-scroll": "^1.8.10"
   },
   "devDependencies": {
     "@types/react": "^18.2.0",
