@@ -1,4 +1,4 @@
-# Professional Portfolio Website
+# Portfolio Website
 
 A modern, responsive portfolio website built with React and Vite. Showcase your projects, skills, and experience with a professional, modern design.
 
