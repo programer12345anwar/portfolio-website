@@ -1,4 +1,5 @@
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { SiLeetcode as FaLeetCode } from "react-icons/si";
 import { Link } from "react-scroll";
 import "./Hero.css";
 
@@ -98,6 +99,15 @@ function Hero() {
               </button>
             </div>
             <div className="social-links">
+
+              <a
+                href="https://leetcode.com/u/mdalam40212/"
+                className="social-link"
+                title="LeetCode"
+              >
+                <FaLeetCode />
+              </a>
+
               <a
                 href="https://github.com/programer12345anwar"
                 className="social-link"

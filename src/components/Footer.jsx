@@ -1,10 +1,9 @@
 import {
   FaGithub,
   FaLinkedin,
-  FaTwitter,
   FaEnvelope,
-
 } from "react-icons/fa";
+import { SiLeetcode } from "react-icons/si";
 import "./Footer.css";
 
 function Footer() {
@@ -21,6 +20,13 @@ function Footer() {
               Expert | 600+ Coding Problems Solved
             </p>
             <div className="social-icons">
+                <a
+                  href="https://leetcode.com/u/mdalam40212/"
+                  className="social-icon"
+                  title="LeetCode"
+                >
+                  <SiLeetcode />
+                </a>
               <a
                 href="https://github.com/programer12345anwar"
                 className="social-icon"
@@ -90,6 +96,7 @@ function Footer() {
           <div className="footer-section">
             <h4>Resources</h4>
             <ul>
+              
               <li>
                 <a href="https://github.com/programer12345anwar">
                   GitHub Profile
