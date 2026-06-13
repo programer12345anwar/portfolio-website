@@ -76,7 +76,7 @@ function Hero() {
             <h1 className="hero-title">Hi, I'm Md Anwar Alam</h1>
             <p className="hero-subtitle">
               Full-Stack Java Developer | Spring Boot | Microservices | DSA
-              Expert | 600+ Coding Problems Solved Building scalable backend
+              Expert | 300+ Coding Problems Solved Building scalable backend
               systems and responsive web applications.
             </p>
             <div className="hero-cta">
