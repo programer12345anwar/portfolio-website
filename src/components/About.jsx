@@ -4,7 +4,7 @@ import "./About.css";
 function About() {
   const stats = [
     { icon: FaCode, label: "LeetCode Problems", value: "250+" },
-    { icon: FaRocket, label: "DSA Problems Solved", value: "600+" },
+    { icon: FaRocket, label: "DSA Problems Solved", value: "300+" },
     { icon: FaUsers, label: "GeeksforGeeks", value: "250+" },
     { icon: FaAward, label: "Certifications", value: "4" },
   ];
