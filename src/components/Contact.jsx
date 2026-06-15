@@ -131,6 +131,7 @@ function Contact() {
                 <a href="tel:+916200705989">+91 6200705989</a>
               </p>
             </div>
+            
             <div className="info-card email-card" onClick={handleEmailClick}>
               <FaEnvelope className="info-icon" />
               <h3>Email</h3>
