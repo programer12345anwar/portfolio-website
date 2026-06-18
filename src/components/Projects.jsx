@@ -45,7 +45,7 @@ function Projects() {
             <div
               key={project.id}
               className="project-card fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              style={{ animationDelay: `${index * 0.01}s` }}
             >
               <div className="project-image">
                 <div className="image-emoji">{project.image}</div>

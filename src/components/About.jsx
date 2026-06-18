@@ -45,7 +45,7 @@ function About() {
                 <div
                   key={index}
                   className="stat-card fade-in"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  style={{ animationDelay: `${index * 0.01}s` }}
                 >
                   <div className="stat-icon">
                     <Icon />
