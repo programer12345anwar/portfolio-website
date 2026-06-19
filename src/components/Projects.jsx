@@ -6,32 +6,98 @@ function Projects() {
     {
       id: 1,
       title: "StreamSphere - Video Streaming Platform",
+      category: "Microservices Backend",
       description:
-        "Microservices-based video streaming platform using Java, Spring Boot, and RabbitMQ. Features modular architecture, asynchronous inter-service communication, PostgreSQL and MongoDB for data management, Docker containerization, and Spring Security for endpoint protection.",
+        "Microservices-based video streaming platform with asynchronous communication, separate persistence layers, Docker support, and secured service endpoints.",
+      highlights: [
+        "RabbitMQ-based inter-service events",
+        "PostgreSQL and MongoDB persistence",
+        "Spring Security protected APIs",
+      ],
       tags: ["Java", "Spring Boot", "Microservices", "RabbitMQ", "Docker"],
-      image: "🎬",
+      accent: "blue",
       github: "https://github.com/programer12345anwar/YouTube-Clone",
       live: "",
     },
     {
       id: 2,
       title: "Cloud Share - Secure File Storage",
+      category: "Full-Stack Product",
       description:
-        "Full-stack cloud storage application with file upload, preview, download, and sharing features. Built with Java, Spring Boot, React. Implemented Spring Security with JWT authentication, MongoDB for metadata, Hibernate/JPA for data operations. Deployed on Vercel.",
+        "Full-stack cloud storage application for uploading, previewing, downloading, and sharing files with JWT authentication and a React frontend.",
+      highlights: [
+        "JWT authentication flow",
+        "File upload, preview, and sharing",
+        "MongoDB metadata and JPA data operations",
+      ],
       tags: ["Java", "Spring Boot", "React", "JWT", "MongoDB"],
-      image: "☁️",
+      accent: "green",
       github: "https://github.com/programer12345anwar/cloud-share-backend",
       live: "https://cloud-share-web-app.vercel.app/",
     },
     {
       id: 3,
       title: "Portfolio Website",
+      category: "Frontend Experience",
       description:
-        "Modern, responsive portfolio website built with React and Vite. Features smooth animations, professional design, interactive sections for projects, skills, and experience. Optimized for performance and designed for easy deployment.",
+        "Responsive React and Vite portfolio focused on clear technical storytelling, accessible navigation, clean sections, and a lightweight production build.",
+      highlights: [
+        "Vite production build",
+        "Responsive component layout",
+        "Accessible navigation and contact paths",
+      ],
       tags: ["React", "Vite", "CSS3", "Responsive Design"],
-      image: "💼",
+      accent: "slate",
       github: "https://github.com/programer12345anwar/portfolio-using-react",
-      live: "https://vercel.com/md-anwar-alams-projects/portfolio-using-react",
+      live: "",
+    },
+    {
+      id: 4,
+      title: "StreamSphere - Video Streaming Platform",
+      category: "Microservices Backend",
+      description:
+        "Microservices-based video streaming platform with asynchronous communication, separate persistence layers, Docker support, and secured service endpoints.",
+      highlights: [
+        "RabbitMQ-based inter-service events",
+        "PostgreSQL and MongoDB persistence",
+        "Spring Security protected APIs",
+      ],
+      tags: ["Java", "Spring Boot", "Microservices", "RabbitMQ", "Docker"],
+      accent: "blue",
+      github: "https://github.com/programer12345anwar/YouTube-Clone",
+      live: "",
+    },
+    {
+      id: 5,
+      title: "Cloud Share - Secure File Storage",
+      category: "Full-Stack Product",
+      description:
+        "Full-stack cloud storage application for uploading, previewing, downloading, and sharing files with JWT authentication and a React frontend.",
+      highlights: [
+        "JWT authentication flow",
+        "File upload, preview, and sharing",
+        "MongoDB metadata and JPA data operations",
+      ],
+      tags: ["Java", "Spring Boot", "React", "JWT", "MongoDB"],
+      accent: "green",
+      github: "https://github.com/programer12345anwar/cloud-share-backend",
+      live: "https://cloud-share-web-app.vercel.app/",
+    },
+    {
+      id: 6,
+      title: "Portfolio Website",
+      category: "Frontend Experience",
+      description:
+        "Responsive React and Vite portfolio focused on clear technical storytelling, accessible navigation, clean sections, and a lightweight production build.",
+      highlights: [
+        "Vite production build",
+        "Responsive component layout",
+        "Accessible navigation and contact paths",
+      ],
+      tags: ["React", "Vite", "CSS3", "Responsive Design"],
+      accent: "slate",
+      github: "https://github.com/programer12345anwar/portfolio-using-react",
+      live: "",
     },
   ];
 
@@ -48,12 +114,30 @@ function Projects() {
               style={{ animationDelay: `${index * 0.01}s` }}
             >
               <div className="project-image">
-                <div className="image-emoji">{project.image}</div>
+                <div className={`project-visual ${project.accent}`}>
+                  <div className="visual-toolbar" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div className="visual-body">
+                    <span className="visual-category">{project.category}</span>
+                    <h4>{project.title.split(" - ")[0]}</h4>
+                    <p>{project.tags.slice(0, 3).join(" / ")}</p>
+                  </div>
+                </div>
               </div>
 
               <div className="project-content">
+                <p className="project-eyebrow">{project.category}</p>
                 <h3 className="project-title">{project.title}</h3>
                 <p className="project-description">{project.description}</p>
+
+                <ul className="project-highlights">
+                  {project.highlights.map((highlight) => (
+                    <li key={highlight}>{highlight}</li>
+                  ))}
+                </ul>
 
                 <div className="project-tags">
                   {project.tags.map((tag, idx) => (
@@ -67,17 +151,29 @@ function Projects() {
                   <a
                     href={project.github}
                     className="project-link"
-                    title="View Code"
+                    title={`View ${project.title} code`}
+                    aria-label={`View ${project.title} source code`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <FaGithub /> Code
                   </a>
-                  <a
-                    href={project.live}
-                    className="project-link"
-                    title="View Live"
-                  >
-                    <FaExternalLinkAlt /> Live
-                  </a>
+                  {project.live ? (
+                    <a
+                      href={project.live}
+                      className="project-link"
+                      title={`View ${project.title} live demo`}
+                      aria-label={`View ${project.title} live demo`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaExternalLinkAlt /> Live
+                    </a>
+                  ) : (
+                    <span className="project-link project-link-disabled">
+                      Demo Pending
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
