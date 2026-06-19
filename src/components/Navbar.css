@@ -38,13 +38,12 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
 }
 
 /* Hover animation */
 .logo h1:hover {
   transform: scale(1.05);
-  letter-spacing: 1px;
   text-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
@@ -67,7 +66,8 @@
   color: var(--secondary-color);
 }
 
-.menu-item::after {
+.menu-item::after,
+.menu-item.active::after {
   content: '';
   position: absolute;
   bottom: -5px;
@@ -79,6 +79,14 @@
 }
 
 .menu-item:hover::after {
+  width: 100%;
+}
+
+.menu-item.active {
+  color: var(--secondary-color);
+}
+
+.menu-item.active::after {
   width: 100%;
 }
 

@@ -1,13 +1,20 @@
 import { useState } from "react";
-import { Link } from "react-scroll";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { scrollToSection } from "../utils/scrollToSection";
 import "./Navbar.css";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((current) => !current);
+  };
+
+  const handleSectionClick = (event, sectionId) => {
+    event.preventDefault();
+    setIsOpen(false);
+    scrollToSection(sectionId);
+    window.history.replaceState(null, "", `#${sectionId}`);
   };
 
   const menuItems = [
@@ -20,38 +27,40 @@ function Navbar() {
   ];
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" aria-label="Primary navigation">
       <div className="navbar-container">
         <div className="logo">
-        <Link
-            to="home"
-            smooth={true}
-            duration={500}
-            offset={-70}
+          <a
+            href="#home"
             className="logo-link"
-        >
+            aria-label="Go to home section"
+            onClick={(event) => handleSectionClick(event, "home")}
+          >
             <h1>Md Anwar Alam</h1>
-        </Link>
+          </a>
         </div>
 
-        <div className={`menu ${isOpen ? "active" : ""}`}>
+        <div id="primary-menu" className={`menu ${isOpen ? "active" : ""}`}>
           {menuItems.map((item) => (
-            <Link
+            <a
               key={item.to}
-              to={item.to}
-              spy={true}
-              smooth={true}
-              offset={-70}
-              duration={500}
+              href={`#${item.to}`}
               className="menu-item"
-              onClick={() => setIsOpen(false)}
+              onClick={(event) => handleSectionClick(event, item.to)}
             >
               {item.name}
-            </Link>
+            </a>
           ))}
         </div>
 
-        <button className="hamburger" onClick={toggleMenu}>
+        <button
+          className="hamburger"
+          type="button"
+          onClick={toggleMenu}
+          aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-controls="primary-menu"
+          aria-expanded={isOpen}
+        >
           {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </button>
       </div>
