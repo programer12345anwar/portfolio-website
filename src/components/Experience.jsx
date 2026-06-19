@@ -167,14 +167,17 @@ function Experience() {
             <div className="achievements-grid">
               {achievements.map((ach, index) => {
                 const Icon = ach.icon;
+                const CardTag = ach.link ? "a" : "article";
+
                 return (
-                  <a
+                  <CardTag
                     key={index}
-                    href={ach.link || "#"}
+                    {...(ach.link && { href: ach.link })}
                     className="achievement-card"
                     {...(ach.link && {
                       target: "_blank",
                       rel: "noopener noreferrer",
+                      "aria-label": `Open ${ach.title} achievement`,
                     })}
                   >
                     <div className="achievement-icon">
@@ -182,7 +185,7 @@ function Experience() {
                     </div>
                     <h4>{ach.title}</h4>
                     <p>{ach.description}</p>
-                  </a>
+                  </CardTag>
                 );
               })}
             </div>
