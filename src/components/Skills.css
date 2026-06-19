@@ -23,7 +23,7 @@
 .skill-card {
   background: var(--white);
   padding: 40px 30px;
-  border-radius: 12px;
+  border-radius: 8px;
   text-align: center;
   transition: var(--transition);
   border: 2px solid var(--border-color);

@@ -3,7 +3,6 @@ import {
   FaReact,
   FaCog,
   FaDatabase,
-  FaGitAlt,
   FaDocker,
 } from "react-icons/fa";
 
@@ -50,7 +49,7 @@ function Skills() {
     },
     {
       category: "Tools & DevOps",
-      icon: FaCog,
+      icon: FaDocker,
       skills: [
         "Maven",
         "Docker",
@@ -62,7 +61,7 @@ function Skills() {
     },
     {
       category: "Advanced Java",
-      icon: FaGitAlt,
+      icon: FaCog,
       skills: [
         "Exception Handling",
         "Servlets",
@@ -99,7 +98,7 @@ function Skills() {
               <div
                 key={index}
                 className="skill-card fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                style={{ animationDelay: `${index * 0.01}s` }}
               >
                 <div className="skill-icon">
                   <Icon />
