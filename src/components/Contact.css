@@ -30,11 +30,12 @@
 .info-card {
   background: var(--white);
   padding: 30px;
-  border-radius: 12px;
+  border-radius: 8px;
   text-align: center;
   transition: var(--transition);
   border: 2px solid var(--border-color);
   box-shadow: var(--shadow);
+  color: inherit;
 }
 
 .info-card:hover {
@@ -67,7 +68,7 @@
 .contact-form {
   background: var(--white);
   padding: 40px;
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: var(--shadow);
   border: 2px solid var(--border-color);
 }
@@ -141,6 +142,8 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  display: block;
+  text-decoration: none;
 }
 
 .email-card::before {
@@ -153,14 +156,14 @@
   background: rgba(59, 130, 246, 0.05);
   opacity: 0;
   transition: var(--transition);
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 .email-card:hover::before {
   opacity: 1;
 }
 
-.email-card p a {
+.email-card p {
   color: var(--secondary-color);
   text-decoration: none;
   font-weight: 600;
@@ -168,9 +171,18 @@
   transition: var(--transition);
 }
 
-.email-card p a:hover {
+.email-card:hover p {
   color: #1d4ed8;
   text-decoration: underline;
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .success-message {

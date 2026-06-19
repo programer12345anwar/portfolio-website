@@ -9,6 +9,7 @@ function Contact() {
     email: "",
     subject: "",
     message: "",
+    website: "",
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -26,30 +27,37 @@ function Contact() {
     setIsLoading(true);
 
     try {
-      // Validate form data
       if (
-        !formData.name ||
-        !formData.email ||
-        !formData.subject ||
-        !formData.message
+        !formData.name.trim() ||
+        !formData.email.trim() ||
+        !formData.subject.trim() ||
+        !formData.message.trim()
       ) {
         throw new Error("All fields are required");
       }
-      
 
-      // Prepare form data to submit (Formspree or other endpoint)
+      if (formData.website) {
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+          website: "",
+        });
+        return;
+      }
+
+      const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT;
+
+      if (!FORMSPREE_ENDPOINT) {
+        throw new Error("Contact form endpoint is not configured");
+      }
+
       const formDataToSubmit = new FormData();
-      formDataToSubmit.append("name", formData.name);
-      formDataToSubmit.append("email", formData.email);
-      formDataToSubmit.append("subject", formData.subject);
-      formDataToSubmit.append("message", formData.message);
-
-
-      // Use configurable endpoint via Vite env var `VITE_FORMSPREE_ENDPOINT`.
-      // If not set, this falls back to the previous placeholder endpoint.
-      const FORMSPREE_ENDPOINT =
-        import.meta.env.VITE_FORMSPREE_ENDPOINT ||
-        "https://formspree.io/f/xyzyzryb";
+      formDataToSubmit.append("name", formData.name.trim());
+      formDataToSubmit.append("email", formData.email.trim());
+      formDataToSubmit.append("subject", formData.subject.trim());
+      formDataToSubmit.append("message", formData.message.trim());
 
       const response = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
@@ -59,22 +67,10 @@ function Contact() {
         },
       });
 
-
-      // Try to read response body for better diagnostics
-      let respBody = "";
-      try {
-        respBody = await response.text();
-      } catch (err) {
-        respBody = "<no response body>";
-      }
-
       if (!response.ok) {
-        throw new Error(
-          `Form submission failed: ${response.status} ${response.statusText} - ${respBody}`,
-        );
+        throw new Error(`Form submission failed: ${response.status}`);
       }
 
-      // Show success toast
       toast.success("Message sent to Md Anwar Alam! He will reply soon.", {
         duration: 4000,
         position: "bottom-right",
@@ -86,10 +82,18 @@ function Contact() {
         },
       });
 
-      // Reset form
-      setFormData({ name: "", email: "", subject: "", message: "" });
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+        website: "",
+      });
     } catch (error) {
-      console.error("Error sending message:", error);
+      if (import.meta.env.DEV) {
+        console.error("Error sending message:", error);
+      }
+
       toast.error(
         "Failed to send message. Please try again or contact directly at mdanwar40212@gmail.com",
         {
@@ -108,14 +112,6 @@ function Contact() {
     }
   };
 
-  const handleEmailClick = () => {
-    // Open Gmail compose
-    window.open(
-      `https://mail.google.com/mail/u/0/?view=cm&fs=1&to=mdanwar40212@gmail.com`,
-      "_blank",
-    );
-  };
-
   return (
     <section className="contact" id="contact">
       <Toaster />
@@ -132,13 +128,15 @@ function Contact() {
               </p>
             </div>
             
-            <div className="info-card email-card" onClick={handleEmailClick}>
+            <a
+              className="info-card email-card"
+              href="mailto:mdanwar40212@gmail.com"
+              aria-label="Email Md Anwar Alam"
+            >
               <FaEnvelope className="info-icon" />
               <h3>Email</h3>
-              <p style={{ cursor: "pointer", color: "#3b82f6" }}>
-                mdanwar40212@gmail.com
-              </p>
-            </div>
+              <p>mdanwar40212@gmail.com</p>
+            </a>
             <div className="info-card">
               <FaMapMarkerAlt className="info-icon" />
               <h3>Location</h3>
@@ -199,7 +197,25 @@ function Contact() {
               ></textarea>
             </div>
 
-            <button type="submit" className="submit-btn" disabled={isLoading}>
+            <div className="form-group honeypot" aria-hidden="true">
+              <label htmlFor="website">Website</label>
+              <input
+                type="text"
+                id="website"
+                name="website"
+                value={formData.website}
+                onChange={handleChange}
+                tabIndex="-1"
+                autoComplete="off"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="submit-btn"
+              disabled={isLoading}
+              aria-busy={isLoading}
+            >
               {isLoading ? "Sending..." : "Send Message"}
             </button>
           </form>
