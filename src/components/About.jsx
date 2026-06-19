@@ -4,9 +4,9 @@ import "./About.css";
 function About() {
   const stats = [
     { icon: FaCode, label: "LeetCode Problems", value: "250+" },
-    { icon: FaRocket, label: "DSA Problems Solved", value: "300+" },
-    { icon: FaUsers, label: "GeeksforGeeks", value: "250+" },
-    { icon: FaAward, label: "Certifications", value: "4" },
+    { icon: FaRocket, label: "Total Practice Problems", value: "600+" },
+    { icon: FaUsers, label: "GeeksforGeeks Problems", value: "250+" },
+    { icon: FaAward, label: "Certifications", value: "3" },
   ];
 
   return (
@@ -17,22 +17,22 @@ function About() {
         <div className="about-content">
           <div className="about-text fade-in">
             <p className="about-para">
-              I'm a Java Full-Stack Developer with strong expertise in Core
+              I am a Java Full-Stack Developer with strong expertise in Core
               Java, Data Structures & Algorithms (DSA), and modern backend
               technologies. I specialize in building scalable microservices
               using Spring Boot, crafting RESTful APIs, and implementing secure
               authentication with Spring Security and JWT.
             </p>
             <p className="about-para">
-              Currently working as an Associate at Wipro Limited, I bring
-              practical experience in system design, database optimization, and
-              containerization with Docker. I've solved 600+ coding problems on
-              platforms like LeetCode and GeeksforGeeks, demonstrating strong
-              problem-solving skills and technical depth.
+              Alongside my current role at Wipro Limited, I keep sharpening my
+              engineering depth through production-style projects, database
+              design, Docker-based workflows, and clean API development. I have
+              solved 600+ practice problems across platforms like LeetCode,
+              GeeksforGeeks, and AccioJob.
             </p>
             <p className="about-para">
               My passion lies in writing clean, maintainable code and designing
-              systems that scale. I'm certified in Java Full Stack Development
+              systems that scale. I am certified in Java Full Stack Development
               and TCS NQT, committed to continuous learning, and always eager to
               tackle complex technical challenges.
             </p>
