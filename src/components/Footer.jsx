@@ -4,10 +4,17 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
+import { scrollToSection } from "../utils/scrollToSection";
 import "./Footer.css";
 
 function Footer() {
   const currentYear = new Date().getFullYear();
+
+  const handleSectionClick = (event, sectionId) => {
+    event.preventDefault();
+    scrollToSection(sectionId);
+    window.history.replaceState(null, "", `#${sectionId}`);
+  };
 
   return (
     <footer className="footer">
@@ -17,13 +24,16 @@ function Footer() {
             <h3>Md Anwar Alam</h3>
             <p>
               Full-Stack Java Developer | Spring Boot | Microservices | DSA
-              Expert | 600+ Coding Problems Solved
+              Practice | 600+ Coding Problems Solved
             </p>
             <div className="social-icons">
                 <a
                   href="https://leetcode.com/u/mdalam40212/"
                   className="social-icon"
                   title="LeetCode"
+                  aria-label="LeetCode profile"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <SiLeetcode />
                 </a>
@@ -31,6 +41,9 @@ function Footer() {
                 href="https://github.com/programer12345anwar"
                 className="social-icon"
                 title="GitHub"
+                aria-label="GitHub profile"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <FaGithub />
               </a>
@@ -38,6 +51,9 @@ function Footer() {
                 href="https://www.linkedin.com/in/md-anwar-alam-45b4b1240/"
                 className="social-icon"
                 title="LinkedIn"
+                aria-label="LinkedIn profile"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <FaLinkedin />
               </a>
@@ -45,6 +61,7 @@ function Footer() {
                 href="mailto:mdanwar40212@gmail.com"
                 className="social-icon"
                 title="Email"
+                aria-label="Email Md Anwar Alam"
               >
                 <FaEnvelope />
               </a>
@@ -55,22 +72,43 @@ function Footer() {
             <h4>Quick Links</h4>
             <ul>
               <li>
-                <a href="#home">Home</a>
+                <a href="#home" onClick={(event) => handleSectionClick(event, "home")}>
+                  Home
+                </a>
               </li>
               <li>
-                <a href="#about">About</a>
+                <a href="#about" onClick={(event) => handleSectionClick(event, "about")}>
+                  About
+                </a>
               </li>
               <li>
-                <a href="#skills">Skills</a>
+                <a href="#skills" onClick={(event) => handleSectionClick(event, "skills")}>
+                  Skills
+                </a>
               </li>
               <li>
-                <a href="#projects">Projects</a>
+                <a
+                  href="#projects"
+                  onClick={(event) => handleSectionClick(event, "projects")}
+                >
+                  Projects
+                </a>
               </li>
               <li>
-                <a href="#experience">Experience</a>
+                <a
+                  href="#experience"
+                  onClick={(event) => handleSectionClick(event, "experience")}
+                >
+                  Experience
+                </a>
               </li>
               <li>
-                <a href="#contact">Contact</a>
+                <a
+                  href="#contact"
+                  onClick={(event) => handleSectionClick(event, "contact")}
+                >
+                  Contact
+                </a>
               </li>
             </ul>
           </div>
@@ -79,16 +117,36 @@ function Footer() {
             <h4>Services</h4>
             <ul>
               <li>
-                <a href="#">Backend Development</a>
+                <a
+                  href="#projects"
+                  onClick={(event) => handleSectionClick(event, "projects")}
+                >
+                  Backend Development
+                </a>
               </li>
               <li>
-                <a href="#">Microservices Architecture</a>
+                <a
+                  href="#projects"
+                  onClick={(event) => handleSectionClick(event, "projects")}
+                >
+                  Microservices Architecture
+                </a>
               </li>
               <li>
-                <a href="#">Full Stack Development</a>
+                <a
+                  href="#projects"
+                  onClick={(event) => handleSectionClick(event, "projects")}
+                >
+                  Full Stack Development
+                </a>
               </li>
               <li>
-                <a href="#">API Development</a>
+                <a
+                  href="#contact"
+                  onClick={(event) => handleSectionClick(event, "contact")}
+                >
+                  API Development
+                </a>
               </li>
             </ul>
           </div>
@@ -98,18 +156,34 @@ function Footer() {
             <ul>
               
               <li>
-                <a href="https://github.com/programer12345anwar">
+                <a
+                  href="https://github.com/programer12345anwar"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   GitHub Profile
                 </a>
               </li>
               <li>
-                <a href="https://leetcode.com/u/mdalam40212/">LeetCode</a>
+                <a
+                  href="https://leetcode.com/u/mdalam40212/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LeetCode
+                </a>
               </li>
               <li>
-                <a href="#">DSA Problems</a>
+                <a
+                  href="https://www.linkedin.com/in/md-anwar-alam-45b4b1240/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
               </li>
               <li>
-                <a href="#">Technical Articles</a>
+                <a href="mailto:mdanwar40212@gmail.com">Contact</a>
               </li>
             </ul>
           </div>
@@ -117,8 +191,7 @@ function Footer() {
 
         <div className="footer-bottom">
           <p className="copyright">
-            &copy; {currentYear} All rights reserved. Made 
-             by Md Anwar Alam
+            &copy; {currentYear} Md Anwar Alam. All rights reserved.
           </p>
         </div>
       </div>
