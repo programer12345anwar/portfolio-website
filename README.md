@@ -46,7 +46,11 @@ npm install
 npm run dev
 ```
 
-The application will open at `http://localhost:3000`
+Visit the application at `http://localhost:3000`
+
+> Do not open `index.html` directly with a `file:///` URL. Vite uses browser
+> module loading, so the app must be served through `npm run dev` or
+> `npm run preview`.
 
 ## 📦 Build for Production
 
