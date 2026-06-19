@@ -1,71 +1,46 @@
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { SiLeetcode as FaLeetCode } from "react-icons/si";
-import { Link } from "react-scroll";
+import { scrollToSection } from "../utils/scrollToSection";
 import "./Hero.css";
 
 function Hero() {
-  const handleDownloadResume = () => {
-    // Download resume from Google Drive using the file ID
-    // File ID extracted from: https://drive.google.com/file/d/1fa_MrLw0DajKSeza0e14KF9wnS5-2ZnF/view
-    const driveFileId = "1fa_MrLw0DajKSeza0e14KF9wnS5-2ZnF";
-    const driveDownloadUrl = `https://drive.google.com/uc?export=download&id=${driveFileId}`;
+  const resumeUrl =
+    "https://drive.google.com/uc?export=download&id=1fa_MrLw0DajKSeza0e14KF9wnS5-2ZnF";
 
-    // Open the download link in a new tab/window to trigger the download
-    const element = document.createElement("a");
-    element.href = driveDownloadUrl;
-    element.target = "_blank";
-    element.rel = "noopener noreferrer";
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-  };
+  const socialLinks = [
+    {
+      href: "https://leetcode.com/u/mdalam40212/",
+      label: "LeetCode profile",
+      icon: FaLeetCode,
+    },
+    {
+      href: "https://github.com/programer12345anwar",
+      label: "GitHub profile",
+      icon: FaGithub,
+    },
+    {
+      href: "https://www.linkedin.com/in/md-anwar-alam-45b4b1240/",
+      label: "LinkedIn profile",
+      icon: FaLinkedin,
+    },
+    {
+      href: "mailto:mdanwar40212@gmail.com",
+      label: "Email Md Anwar Alam",
+      icon: FaEnvelope,
+      isEmail: true,
+    },
+  ];
 
-  const handleEmailClick = (e) => {
-    e.preventDefault();
-    const email = "mdanwar40212@gmail.com";
-    const mailtoLink = `mailto:${email}`;
+  const highlights = [
+    { value: "300+", label: "Coding problems solved" },
+    { value: "6+", label: "Production-style projects" },
+    { value: "3", label: "Certifications" },
+  ];
 
-    // Track whether the window lost focus after trying to open the mail client.
-    // If it doesn't lose focus, assume the mail client didn't open and fallback to Gmail.
-    let blurred = false;
-    const onBlur = () => {
-      blurred = true;
-    };
-    window.addEventListener("blur", onBlur);
-
-    // Open a blank window synchronously so we can reuse it for the Gmail fallback
-    // (this avoids popup blockers when opening from the timeout)
-    let fallbackWin = null;
-    try {
-      fallbackWin = window.open("", "_blank", "noopener,noreferrer");
-    } catch (err) {
-      fallbackWin = null;
-    }
-
-    // Try opening the user's default mail client
-    window.location.href = mailtoLink;
-
-    // Fallback to Gmail compose if default client didn't open (no blur)
-    setTimeout(() => {
-      window.removeEventListener("blur", onBlur);
-      if (!blurred) {
-        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}`;
-        try {
-          if (fallbackWin && !fallbackWin.closed) {
-            fallbackWin.location.href = gmailUrl;
-          } else {
-            window.open(gmailUrl, "_blank", "noopener,noreferrer");
-          }
-        } catch (err) {
-          window.open(gmailUrl, "_blank", "noopener,noreferrer");
-        }
-      } else {
-        // Close the placeholder tab if the mail client opened
-        if (fallbackWin && !fallbackWin.closed) {
-          try { fallbackWin.close(); } catch (err) { /* ignore */ }
-        }
-      }
-    }, 1000);
+  const handleProjectsClick = (event) => {
+    event.preventDefault();
+    scrollToSection("projects");
+    window.history.replaceState(null, "", "#projects");
   };
 
   return (
@@ -73,64 +48,62 @@ function Hero() {
       <div className="container">
         <div className="hero-content fade-in">
           <div className="hero-text">
-            <h1 className="hero-title">Hi, I'm Md Anwar Alam</h1>
+            <p className="hero-kicker">Full-Stack Java Developer</p>
+            <h1 className="hero-title">Hi, I am Md Anwar Alam</h1>
             <p className="hero-subtitle">
-              Full-Stack Java Developer | Spring Boot | Spring Security | Hibernate | Microservices | Data Structure and Algorithm | 300+ Coding Problems Solved Building scalable backend
-              systems and responsive web applications.
+              I build secure Spring Boot APIs, microservices, and responsive
+              React interfaces with a focus on clean architecture,
+              authentication, database design, and practical problem solving.
             </p>
+
+            <div className="hero-highlights" aria-label="Professional highlights">
+              {highlights.map((item) => (
+                <div className="hero-highlight" key={item.label}>
+                  <strong>{item.value}</strong>
+                  <span>{item.label}</span>
+                </div>
+              ))}
+            </div>
+
             <div className="hero-cta">
-              <Link
-                to="projects"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
+              <a
+                href="#projects"
                 className="btn btn-primary"
                 style={{ cursor: "pointer" }}
+                onClick={handleProjectsClick}
               >
                 View My Work
-              </Link>
-              <button
+              </a>
+              <a
+                href={resumeUrl}
                 className="btn btn-secondary"
-                onClick={handleDownloadResume}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 Download Resume
-              </button>
+              </a>
             </div>
-            <div className="social-links">
 
-              <a
-                href="https://leetcode.com/u/mdalam40212/"
-                className="social-link"
-                title="LeetCode"
-              >
-                <FaLeetCode />
-              </a>
+            <div className="social-links" aria-label="Social profiles">
+              {socialLinks.map((link) => {
+                const Icon = link.icon;
 
-              
-
-              <a
-                href="https://github.com/programer12345anwar"
-                className="social-link"
-                title="GitHub"
-              >
-                <FaGithub />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/md-anwar-alam-45b4b1240/"
-                className="social-link"
-                title="LinkedIn"
-              >
-                <FaLinkedin />
-              </a>
-              <a
-                href="mailto:mdanwar40212@gmail.com"
-                className="social-link"
-                title="Email"
-                onClick={handleEmailClick}
-              >
-                <FaEnvelope />
-              </a>
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="social-link"
+                    title={link.label}
+                    aria-label={link.label}
+                    {...(!link.isEmail && {
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    })}
+                  >
+                    <Icon />
+                  </a>
+                );
+              })}
             </div>
           </div>
           <div className="hero-image">
@@ -138,6 +111,8 @@ function Hero() {
               src={new URL("/profile.jpg", import.meta.url).href}
               alt="Md Anwar Alam"
               className="profile-photo"
+              decoding="async"
+              fetchPriority="high"
             />
           </div>
         </div>
