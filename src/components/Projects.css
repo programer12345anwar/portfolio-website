@@ -72,6 +72,18 @@
   background: linear-gradient(135deg, #0f172a 0%, #475569 100%);
 }
 
+.project-visual.violet {
+  background: linear-gradient(135deg, #5b21b6 0%, #8b5cf6 100%);
+}
+
+.project-visual.amber {
+  background: linear-gradient(135deg, #92400e 0%, #f59e0b 100%);
+}
+
+.project-visual.cyan {
+  background: linear-gradient(135deg, #0e7490 0%, #22d3ee 100%);
+}
+
 .visual-toolbar {
   display: flex;
   gap: 6px;
@@ -216,6 +228,7 @@
 .project-link:hover {
   background: var(--accent-color);
   transform: translateY(-2px);
+  color: var(--white);
 }
 
 .project-link-disabled {
