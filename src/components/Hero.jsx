@@ -3,6 +3,7 @@ import { SiLeetcode as FaLeetCode } from "react-icons/si";
 import { scrollToSection } from "../utils/scrollToSection";
 import "./Hero.css";
 
+
 function Hero() {
   const resumeUrl =
     "https://drive.google.com/uc?export=download&id=1fa_MrLw0DajKSeza0e14KF9wnS5-2ZnF";
