@@ -19,11 +19,13 @@ function Hero() {
       label: "GitHub profile",
       icon: FaGithub,
     },
+    
     {
       href: "https://www.linkedin.com/in/md-anwar-alam-45b4b1240/",
       label: "LinkedIn profile",
       icon: FaLinkedin,
     },
+
     {
       href: "mailto:mdanwar40212@gmail.com",
       label: "Email Md Anwar Alam",
