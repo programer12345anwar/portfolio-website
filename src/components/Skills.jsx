@@ -4,6 +4,7 @@ import {
   FaCog,
   FaDatabase,
   FaDocker,
+  FaRobot,
 } from "react-icons/fa";
 
 import { SiSpringboot } from "react-icons/si";
@@ -47,6 +48,20 @@ function Skills() {
         "JPA/Hibernate",
       ],
     },
+
+    {
+      category: "AI & Integrations",
+      icon: FaRobot,
+      skills: [
+        "Google Gemini API",
+        "REST API Integration",
+        "Prompt Engineering",
+        "JSON Processing",
+        "Markdown Rendering",
+        "AI-powered Applications",
+      ],
+    },
+
     {
       category: "Tools & DevOps",
       icon: FaDocker,
