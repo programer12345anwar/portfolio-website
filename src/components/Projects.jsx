@@ -17,7 +17,7 @@ function Projects() {
       tags: ["Java", "Spring Boot", "Microservices", "RabbitMQ", "Docker"],
       accent: "blue",
       github: "https://github.com/programer12345anwar/YouTube-Clone",
-      live: "",
+      live: "https://stream-sphere-application.vercel.app/",
     },
 
     {
