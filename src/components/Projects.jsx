@@ -84,9 +84,8 @@ function Projects() {
       tags: ["React", "Vite", "CSS3", "Responsive Design"],
       accent: "slate",
       github: "https://github.com/programer12345anwar/portfolio-using-react",
-      live: "",
+      live: "https://portfolio-using-react-ten.vercel.app/",
     },
-    
     {
       id: 6,
       title: "Weather Application - Real-Time Weather API",
