@@ -36,7 +36,15 @@ function Navbar() {
             aria-label="Go to home section"
             onClick={(event) => handleSectionClick(event, "home")}
           >
-            <h1>Md Anwar Alam</h1>
+            <img
+              className="logo-mark"
+              src="/favicon.svg"
+              alt=""
+              aria-hidden="true"
+              width="44"
+              height="44"
+            />
+            <span className="logo-text">Md Anwar Alam</span>
           </a>
         </div>
 
