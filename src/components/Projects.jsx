@@ -3,26 +3,10 @@ import "./Projects.css";
 
 function Projects() {
   const projects = [
-    {
-      id: 1,
-      title: "StreamSphere - Video Streaming Platform",
-      category: "Microservices Backend",
-      description:
-        "Microservices-based video streaming platform with asynchronous communication, separate persistence layers, Docker support, and secured service endpoints.",
-      highlights: [
-        "RabbitMQ-based inter-service events",
-        "PostgreSQL and MongoDB persistence",
-        "Spring Security protected APIs",
-      ],
-      
-      tags: ["Java", "Spring Boot", "Microservices", "RabbitMQ", "Docker"],
-      accent: "blue",
-      github: "https://github.com/programer12345anwar/YouTube-Clone",
-      live: "https://stream-sphere-application.vercel.app/",
-    },
+   
 
     {
-      id: 2,
+      id: 1,
       title: "AI Code Reviewer - Monolithic Application",
       category: "AI-Powered Developer Tool",
       description:
@@ -38,8 +22,41 @@ function Projects() {
         "https://github.com/programer12345anwar/AI-Code-Reviewer-Monolithic-Application",
       live: "https://ai-code-reviewer-monolithic-applica-gray.vercel.app/",
     },
-    {
+     {
+      id: 2,
+      title: "StreamSphere - Video Streaming Platform",
+      category: "Microservices Backend",
+      description:
+        "Microservices-based video streaming platform with asynchronous communication, separate persistence layers, Docker support, and secured service endpoints.",
+      highlights: [
+        "RabbitMQ-based inter-service events",
+        "PostgreSQL and MongoDB persistence",
+        "Spring Security protected APIs",
+      ],
+      
+      tags: ["Java", "Spring Boot", "Microservices", "RabbitMQ", "Docker"],
+      accent: "blue",
+      github: "https://github.com/programer12345anwar/YouTube-Clone",
+      live: "https://stream-sphere-application.vercel.app/",
+    },
+     {
       id: 3,
+      title: "Cloud Share - Secure File Storage",
+      category: "Full-Stack Product",
+      description:
+        "Full-stack cloud storage application for uploading, previewing, downloading, and sharing files with JWT authentication and a React frontend.",
+      highlights: [
+        "JWT authentication flow",
+        "File upload, preview, and sharing",
+        "MongoDB metadata and JPA data operations",
+      ],
+      tags: ["Java", "Spring Boot", "React", "JWT", "MongoDB"],
+      accent: "green",
+      github: "https://github.com/programer12345anwar/cloud-share-backend",
+      live: "https://cloud-share-web-app.vercel.app/",
+    },
+    {
+      id: 4,
       title: "BondKeeper - Relationship Management Platform",
       category: "Full-Stack SaaS Platform",
       description:
@@ -55,22 +72,7 @@ function Projects() {
       live: "https://bondkeeper-platform.vercel.app/login",
     },
 
-    {
-      id: 4,
-      title: "Cloud Share - Secure File Storage",
-      category: "Full-Stack Product",
-      description:
-        "Full-stack cloud storage application for uploading, previewing, downloading, and sharing files with JWT authentication and a React frontend.",
-      highlights: [
-        "JWT authentication flow",
-        "File upload, preview, and sharing",
-        "MongoDB metadata and JPA data operations",
-      ],
-      tags: ["Java", "Spring Boot", "React", "JWT", "MongoDB"],
-      accent: "green",
-      github: "https://github.com/programer12345anwar/cloud-share-backend",
-      live: "https://cloud-share-web-app.vercel.app/",
-    },
+   
     {
       id: 5,
       title: "Portfolio Website",
