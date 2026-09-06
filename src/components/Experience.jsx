@@ -13,7 +13,7 @@ function Experience() {
       icon: FaBriefcase,
       title: "Associate - Fraud Analyst",
       organization: "Wipro Limited",
-      period: "2025 - Present",
+      period: "2025 - Serving Notice Period, Last Working day - 19 September",
       description: [
         "Reviewed and analyzed web content against Google quality guidelines with data-driven decision making",
         "Maintained high accuracy and SLA compliance while processing high-volume cases",
